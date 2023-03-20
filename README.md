@@ -1,2 +1,2 @@
-# Waiter Aapp 
+# Waiter App 
 ## Currently working on it 🚧🏗️
