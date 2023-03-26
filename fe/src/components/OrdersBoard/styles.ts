@@ -37,6 +37,7 @@ export const OrdersContainer = styled.div`
     height: 8rem;
     border-radius: 0.5rem;
     gap: 0.25rem;
+    outline: 0;
 
     strong {
       font-weight: 500;

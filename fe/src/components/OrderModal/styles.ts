@@ -101,4 +101,55 @@ export const OrderDetails = styled.div`
       }
     }
   }
+
+  .total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+
+    span {
+      font-size: 0.875rem;
+      font-weight: 500;
+      opacity: 0.8;
+    }
+  }
+`;
+
+export const Actions = styled.footer`
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+
+  .primary {
+    background: #333333;
+    border:  0;
+    border-radius: 3rem;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    &:hover {
+      filter: brightness(1.3);
+      transition: all 0.2s linear;
+    }
+  }
+
+  .secondary {
+    padding: 0.75rem 1.5rem;
+    color: #d73035;
+    font-weight: bold;
+    border: 0;
+    border-radius: 3rem;
+    background-color: transparent;
+    margin-top: 0.75rem;
+
+    &:hover {
+      box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+      transition: all 0.2s linear;
+    }
+  }
 `;
