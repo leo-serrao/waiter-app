@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button } from '../components/Button';
 import { Categories } from '../components/Categories';
 import { Header } from '../components/Header';
@@ -6,10 +7,32 @@ import { TableModal } from '../components/TableModal';
 import { CategoriesContainer, Container, Footer, FooterContainer, MenuContainer } from './styles';
 
 export function Main() {
+  const [isTableModalVisible, setIsTableModalVisible] = useState(false);
+  const [selectedTable, setSelectedTable] = useState('');
+
+  function handleOpenModal() {
+    setIsTableModalVisible(true);
+  }
+
+  function handleCloseModal() {
+    setIsTableModalVisible(false);
+  }
+
+  function handleSaveTable(table: string) {
+    setSelectedTable(table);
+  }
+
+  function handleCancelOrder() {
+    setSelectedTable('');
+  }
+
   return (
     <>
       <Container>
-        <Header />
+        <Header
+          selectedTable={selectedTable}
+          onCancelOrder={handleCancelOrder}
+        />
 
         <CategoriesContainer>
           <Categories />
@@ -22,13 +45,19 @@ export function Main() {
       </Container>
       <Footer>
         <FooterContainer>
-          <Button onPress={() => alert('Novo Pedido feito')}>
-            Novo Pedido
-          </Button>
+          {!selectedTable && (
+            <Button onPress={handleOpenModal}>
+              Novo Pedido
+            </Button>
+          )}
         </FooterContainer>
       </Footer>
 
-      <TableModal />
+      <TableModal
+        visible={isTableModalVisible}
+        onClose={handleCloseModal}
+        onSave={handleSaveTable}
+      />
     </>
   );
 }
