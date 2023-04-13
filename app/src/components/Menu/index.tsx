@@ -5,7 +5,7 @@ import { products } from '../../mocks/products';
 import { formatCurrency } from '../../utils/formatCurrency';
 import { PlusCircle } from '../Icons/PlusCircle';
 import { ProductModal } from '../ProductModal';
-import { ProductProps } from '../../types/product';
+import { ProductProps } from '../../types/Product';
 import { Text } from '../Text';
 
 import { AddToCartButton, Product, ProductDetails, ProductImage, Separator } from './styles';
