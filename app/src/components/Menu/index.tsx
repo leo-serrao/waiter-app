@@ -10,8 +10,11 @@ import { Text } from '../Text';
 
 import { AddToCartButton, Product, ProductDetails, ProductImage, Separator } from './styles';
 
+interface MenuProps {
+  onAddToCart: (product: ProductProps) => void;
+}
 
-export function Menu() {
+export function Menu({ onAddToCart }: MenuProps) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<ProductProps | null>(null);
 
@@ -42,7 +45,7 @@ export function Menu() {
               <Text size={14} weight='600'>{formatCurrency(product.price)}</Text>
             </ProductDetails>
 
-            <AddToCartButton>
+            <AddToCartButton onPress={() => onAddToCart(product)}>
               <PlusCircle />
             </AddToCartButton>
           </Product>
@@ -53,6 +56,7 @@ export function Menu() {
         visible={isModalVisible}
         onClose={() => setIsModalVisible(false)}
         selectedProduct={selectedProduct}
+        onAddToCart={onAddToCart}
       />
     </>
   );
