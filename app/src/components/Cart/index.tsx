@@ -19,15 +19,17 @@ import {
   Summary,
   TotalContainer
 } from './syles';
+import { api } from '../../utils/api';
 
 interface CartProps {
   cartItems: CartItem[]
   onRemoveFromCart: (product: ProductProps) => void;
   onAddToCart: (product: ProductProps) => void;
   onConfirmOrder: () => void;
+  selectedTable: string;
 }
 
-export function Cart({ cartItems, onRemoveFromCart, onAddToCart, onConfirmOrder }: CartProps) {
+export function Cart({ cartItems, onRemoveFromCart, onAddToCart, onConfirmOrder, selectedTable }: CartProps) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -35,7 +37,21 @@ export function Cart({ cartItems, onRemoveFromCart, onAddToCart, onConfirmOrder 
     return acc + cartItem.quantity * cartItem.product.price;
   }, 0);
 
-  function handleConfirmOrder() {
+  async function handleConfirmOrder() {
+    setIsLoading(true);
+
+    const payload = {
+      table: selectedTable,
+      products: cartItems.map((cartItem) => ({
+        product: cartItem.product._id,
+        quantity: cartItem.quantity
+      })),
+    };
+
+
+    await api.post('/orders', payload);
+
+    setIsLoading(false);
     setIsModalVisible(true);
   }
 
@@ -59,7 +75,7 @@ export function Cart({ cartItems, onRemoveFromCart, onAddToCart, onConfirmOrder 
               <ProductContainer>
                 <Image
                   source={{
-                    uri: `http://192.168.0.111:3001/uploads/${cartItem.product.imagePath}`
+                    uri: `http://192.168.18.80:3001/uploads/${cartItem.product.imagePath}`
                   }}
                 />
 
