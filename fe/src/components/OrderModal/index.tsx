@@ -8,11 +8,14 @@ import { useEffect } from 'react';
 interface OrderModalProps {
   visible: boolean,
   order: Order | null;
+  isLoading: boolean,
   onClose: () => void,
+  onCancelOrder: () => void,
+  onChangeOrderStatus: () => void,
 }
 
 
-export function OrderModal({ visible, order, onClose }: OrderModalProps) {
+export function OrderModal({ visible, order, onClose, onCancelOrder, isLoading, onChangeOrderStatus }: OrderModalProps) {
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
@@ -93,13 +96,25 @@ export function OrderModal({ visible, order, onClose }: OrderModalProps) {
         </OrderDetails>
 
         <Actions>
-          <button className="primary">
-            <span>👨‍🍳</span>
-            <strong>Iniciar produção</strong>
-          </button>
+          {order.status !== 'DONE' && (
+            <button
+              type='button'
+              className="primary"
+              disabled={isLoading}
+              onClick={onChangeOrderStatus}
+            >
+              <span>{order.status === 'WAITING' ? '👨‍🍳' : '✅'}</span>
+              <strong>{order.status === 'WAITING' ? 'Iniciar produção' : 'Concluir pedido'}</strong>
+            </button>
+          )}
 
-          <button className="secondary">
-            Cancelar pedido
+          <button
+            type='button'
+            className="secondary"
+            onClick={onCancelOrder}
+            disabled={isLoading}
+          >
+            {order.status === 'DONE' ? 'Encerrar pedido' : 'Cancelar pedido'}
           </button>
         </Actions>
       </ModalBody>
