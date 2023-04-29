@@ -13,6 +13,7 @@ import { createOrder } from './app/useCases/orders/createOrder';
 import { changeOrderStatus } from './app/useCases/orders/changeOrderStatus';
 import { cancelOrder } from './app/useCases/orders/cancelOrder';
 import { deleteProduct } from './app/useCases/products/deleteProduct';
+import { changeCategoryName } from './app/useCases/categories/changeCategoryName';
 // import { changeCategoryName } from './app/useCases/categories/changeCategoryName';
 
 export const router = Router();
@@ -46,8 +47,8 @@ router.delete('/products/:productId', deleteProduct);
 // Get products by category
 router.get('/categories/:categoryId/products', listProductsByCategories);
 
-// // Change category name
-// router.patch('/catogries/:categoryId', changeCategoryName);
+// Change category name
+router.patch('/categories/:categoryId', changeCategoryName);
 
 // List orders
 router.get('/orders', listOrders);
