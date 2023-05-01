@@ -1,6 +1,6 @@
 # Waiter App 🤵
 
-The Waiter App is a full project with Back-end, Front-end and Mobile App, it's used for waiters to get the orders with the mobile app, then it is received on the web interface in the kitchen to be prepared and finnished.
+The Waiter App is a full project with Back-end, Front-end and Mobile App, it's used for waiters to get the orders with the mobile app, then it is received on the web interface in the kitchen to be prepared and finished.
 
 Find bellow a video of the application working: 
 
